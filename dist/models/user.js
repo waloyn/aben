@@ -40,6 +40,59 @@ var defineUser = function (sequelize) {
             type: new sequelize_1.DataTypes.STRING(128),
             allowNull: false,
         },
+        email: {
+            type: new sequelize_1.DataTypes.STRING(128),
+            allowNull: false,
+        },
+        from_site: {
+            type: new sequelize_1.DataTypes.STRING(128),
+            allowNull: false,
+        },
+        tid: {
+            type: sequelize_1.DataTypes.INTEGER,
+            allowNull: false,
+        },
+        level: {
+            type: sequelize_1.DataTypes.INTEGER,
+            allowNull: false,
+        },
+        all_bytes: {
+            type: sequelize_1.DataTypes.BIGINT,
+            allowNull: false,
+        },
+        use_bytes: {
+            type: sequelize_1.DataTypes.BIGINT,
+            allowNull: false,
+        },
+        blocked: {
+            type: sequelize_1.DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0,
+        },
+        unsub: {
+            type: sequelize_1.DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0,
+        },
+        emergency: {
+            type: sequelize_1.DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0,
+        },
+        created_at: {
+            type: sequelize_1.DataTypes.DATE,
+            allowNull: false,
+            defaultValue: sequelize_1.DataTypes.NOW,
+        },
+        updated_at: {
+            type: sequelize_1.DataTypes.DATE,
+            allowNull: false,
+            defaultValue: sequelize_1.DataTypes.NOW,
+        },
+        deleted_at: {
+            type: sequelize_1.DataTypes.DATE,
+            allowNull: true,
+        },
     }, {
         tableName: 'users',
         sequelize: sequelize,

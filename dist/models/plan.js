@@ -38,6 +38,44 @@ Plan.init({
         type: sequelize_1.DataTypes.FLOAT,
         allowNull: false,
     },
+    level: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+    },
+    type: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
+    days: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+    },
+    bytes: {
+        type: sequelize_1.DataTypes.BIGINT,
+        allowNull: false,
+    },
+    conns: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+    },
+    qps: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+    },
+    rates: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+    },
+    created_at: {
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: false,
+        defaultValue: sequelize_1.DataTypes.NOW,
+    },
+    updated_at: {
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: false,
+        defaultValue: sequelize_1.DataTypes.NOW,
+    },
     description: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: true,
