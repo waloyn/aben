@@ -79,16 +79,6 @@ var defineUser = function (sequelize) {
             allowNull: false,
             defaultValue: 0,
         },
-        created_at: {
-            type: sequelize_1.DataTypes.DATE,
-            allowNull: false,
-            defaultValue: sequelize_1.DataTypes.NOW,
-        },
-        updated_at: {
-            type: sequelize_1.DataTypes.DATE,
-            allowNull: false,
-            defaultValue: sequelize_1.DataTypes.NOW,
-        },
         deleted_at: {
             type: sequelize_1.DataTypes.DATE,
             allowNull: true,

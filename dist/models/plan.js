@@ -66,23 +66,20 @@ Plan.init({
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
-    created_at: {
-        type: sequelize_1.DataTypes.DATE,
-        allowNull: false,
-        defaultValue: sequelize_1.DataTypes.NOW,
-    },
-    updated_at: {
-        type: sequelize_1.DataTypes.DATE,
-        allowNull: false,
-        defaultValue: sequelize_1.DataTypes.NOW,
-    },
     description: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: true,
     },
+    deletedAt: {
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: true,
+    }
 }, {
     sequelize: _1.sequelize,
     tableName: 'plans',
+    timestamps: true,
+    paranoid: true,
+    underscored: true,
 });
 exports.default = Plan;
 //# sourceMappingURL=plan.js.map

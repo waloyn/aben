@@ -14,8 +14,6 @@ export class User extends Model {
   public blocked!: number;
   public unsub!: number;
   public emergency!: number;
-  public created_at!: Date;
-  public updated_at!: Date;
   public deleted_at!: Date;
 }
 
@@ -72,16 +70,6 @@ export const defineUser = (sequelize: Sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 0,
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-    updated_at: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
     },
     deleted_at: {
       type: DataTypes.DATE,

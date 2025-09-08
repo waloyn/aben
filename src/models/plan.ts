@@ -13,13 +13,11 @@ interface PlanAttributes {
   conns: number;
   qps: number;
   rates: number;
-  created_at: Date;
-  updated_at: Date;
-  deleted_at: Date;
   description: string;
+  readonly deletedAt: Date;
 }
 
-interface PlanCreationAttributes extends Optional<PlanAttributes, 'id'> {}
+interface PlanCreationAttributes extends Optional<PlanAttributes, 'id'  | 'deletedAt'> {}
 
 class Plan extends Model<PlanAttributes, PlanCreationAttributes> implements PlanAttributes {
   public id!: number;
@@ -33,9 +31,7 @@ class Plan extends Model<PlanAttributes, PlanCreationAttributes> implements Plan
   public qps!: number;
   public rates!: number;
   public description!: string;
-  public created_at!: Date;
-  public updated_at!: Date;
-  public deleted_at!: Date;
+  public readonly deletedAt!: Date;
 }
 
 Plan.init(
@@ -81,24 +77,21 @@ Plan.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-    updated_at: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
     description: {
       type: DataTypes.STRING,
       allowNull: true,
-    },   
+    },
+    deletedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    }
   },
   {
     sequelize,
     tableName: 'plans',
+    timestamps: true,
+    paranoid: true,
+    underscored: true,
   }
 );
 
