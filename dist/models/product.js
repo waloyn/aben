@@ -22,6 +22,9 @@ var Product = /** @class */ (function (_super) {
     function Product() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    Product.associate = function (models) {
+        // No associations for now
+    };
     return Product;
 }(sequelize_1.Model));
 exports.Product = Product;

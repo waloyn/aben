@@ -5,6 +5,14 @@ export class Log extends Model {
   public id!: number;
   public message!: string;
   public level!: string;
+
+  public static associate(models: any) {
+    // A log belongs to a user
+    this.belongsTo(models.User, {
+      foreignKey: 'user_id',
+      as: 'users',
+    });
+  }
 }
 
 export const defineLog = (sequelize: Sequelize) => {

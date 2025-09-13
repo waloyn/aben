@@ -69,6 +69,9 @@ var Admin = /** @class */ (function (_super) {
             });
         });
     };
+    Admin.associate = function (models) {
+        // No associations for now
+    };
     return Admin;
 }(sequelize_1.Model));
 exports.Admin = Admin;

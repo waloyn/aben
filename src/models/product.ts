@@ -5,6 +5,10 @@ export class Product extends Model {
   public id!: number;
   public name!: string;
   public price!: number;
+
+  public static associate(models: any) {
+    // No associations for now
+  }
 }
 
 export const defineProduct = (sequelize: Sequelize) => {

@@ -22,6 +22,17 @@ var Node = /** @class */ (function (_super) {
     function Node() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    Node.associate = function (models) {
+        // A node belongs to a user
+        this.belongsTo(models.User, {
+            foreignKey: 'user_id',
+            as: 'users',
+        });
+        this.hasMany(models.Plan, {
+            foreignKey: 'level',
+            as: 'plans',
+        });
+    };
     return Node;
 }(sequelize_1.Model));
 exports.Node = Node;
@@ -43,6 +54,16 @@ var defineNode = function (sequelize) {
         port: {
             type: sequelize_1.DataTypes.INTEGER,
             allowNull: false,
+        },
+        level: {
+            type: sequelize_1.DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0,
+        },
+        rate: {
+            type: sequelize_1.DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 1,
         },
     }, {
         tableName: 'nodes',

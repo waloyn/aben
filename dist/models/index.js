@@ -8,6 +8,7 @@ var node_1 = require("./node");
 var log_1 = require("./log");
 var config_1 = require("./config");
 var admin_1 = require("./admin");
+var plan_1 = require("./plan");
 var sequelize = new sequelize_1.Sequelize(process.env.DATABASE_URL || 'sqlite::memory:');
 exports.sequelize = sequelize;
 var models = {
@@ -17,6 +18,7 @@ var models = {
     Log: (0, log_1.defineLog)(sequelize),
     Config: (0, config_1.defineConfig)(sequelize),
     Admin: (0, admin_1.defineAdmin)(sequelize),
+    Plan: (0, plan_1.definePlan)(sequelize),
 };
 exports.models = models;
 Object.values(models).forEach(function (model) {

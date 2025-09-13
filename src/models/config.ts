@@ -5,6 +5,10 @@ export class Config extends Model {
   public id!: number;
   public key!: string;
   public value!: string;
+
+  public static associate(models: any) {
+    // No associations for now
+  }
 }
 
 export const defineConfig = (sequelize: Sequelize) => {

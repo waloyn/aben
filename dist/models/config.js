@@ -22,6 +22,9 @@ var Config = /** @class */ (function (_super) {
     function Config() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    Config.associate = function (models) {
+        // No associations for now
+    };
     return Config;
 }(sequelize_1.Model));
 exports.Config = Config;

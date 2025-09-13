@@ -22,6 +22,13 @@ var User = /** @class */ (function (_super) {
     function User() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    // Define the association
+    User.associate = function (models) {
+        this.belongsTo(models.Plan, {
+            foreignKey: 'pid',
+            as: 'plans',
+        });
+    };
     return User;
 }(sequelize_1.Model));
 exports.User = User;
@@ -48,9 +55,14 @@ var defineUser = function (sequelize) {
             type: new sequelize_1.DataTypes.STRING(128),
             allowNull: false,
         },
-        tid: {
+        // Configure pid as a foreign key
+        pid: {
             type: sequelize_1.DataTypes.INTEGER,
             allowNull: false,
+            references: {
+                model: 'plans', // This is the table name
+                key: 'id',
+            },
         },
         level: {
             type: sequelize_1.DataTypes.INTEGER,

@@ -22,6 +22,13 @@ var Log = /** @class */ (function (_super) {
     function Log() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    Log.associate = function (models) {
+        // A log belongs to a user
+        this.belongsTo(models.User, {
+            foreignKey: 'user_id',
+            as: 'users',
+        });
+    };
     return Log;
 }(sequelize_1.Model));
 exports.Log = Log;

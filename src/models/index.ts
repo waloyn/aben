@@ -1,4 +1,3 @@
-
 import { Sequelize } from 'sequelize';
 import { defineUser } from './user';
 import { defineProduct } from './product';
@@ -6,6 +5,7 @@ import { defineNode } from './node';
 import { defineLog } from './log';
 import { defineConfig } from './config';
 import { defineAdmin } from './admin';
+import { definePlan } from './plan';
 
 const sequelize = new Sequelize(process.env.DATABASE_URL || 'sqlite::memory:');
 
@@ -16,6 +16,7 @@ const models = {
   Log: defineLog(sequelize),
   Config: defineConfig(sequelize),
   Admin: defineAdmin(sequelize),
+  Plan: definePlan(sequelize),
 };
 
 Object.values(models).forEach(model => {

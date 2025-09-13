@@ -15,71 +15,71 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.definePlan = exports.Plan = void 0;
 var sequelize_1 = require("sequelize");
-var _1 = require(".");
 var Plan = /** @class */ (function (_super) {
     __extends(Plan, _super);
     function Plan() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    Plan.associate = function (models) {
+        // A plan can have many users
+        this.hasMany(models.User, {
+            foreignKey: 'pid',
+            as: 'users',
+        });
+        this.belongsTo(models.Node, {
+            foreignKey: 'level',
+            as: 'nodes',
+        });
+    };
     return Plan;
 }(sequelize_1.Model));
-Plan.init({
-    id: {
-        type: sequelize_1.DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-    },
-    name: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
-    },
-    price: {
-        type: sequelize_1.DataTypes.FLOAT,
-        allowNull: false,
-    },
-    level: {
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
-    },
-    type: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
-    },
-    days: {
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
-    },
-    bytes: {
-        type: sequelize_1.DataTypes.BIGINT,
-        allowNull: false,
-    },
-    conns: {
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
-    },
-    qps: {
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
-    },
-    rates: {
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
-    },
-    description: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: true,
-    },
-    deletedAt: {
-        type: sequelize_1.DataTypes.DATE,
-        allowNull: true,
-    }
-}, {
-    sequelize: _1.sequelize,
-    tableName: 'plans',
-    timestamps: true,
-    paranoid: true,
-    underscored: true,
-});
-exports.default = Plan;
+exports.Plan = Plan;
+var definePlan = function (sequelize) {
+    Plan.init({
+        id: {
+            type: sequelize_1.DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+        },
+        name: {
+            type: sequelize_1.DataTypes.STRING,
+            allowNull: false,
+        },
+        price: {
+            type: sequelize_1.DataTypes.FLOAT,
+            allowNull: false,
+        },
+        data: {
+            type: sequelize_1.DataTypes.BIGINT,
+            allowNull: false,
+        },
+        level: {
+            type: sequelize_1.DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0,
+        },
+        rate: {
+            type: sequelize_1.DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0,
+        },
+        connections: {
+            type: sequelize_1.DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0,
+        },
+        description: {
+            type: sequelize_1.DataTypes.STRING,
+            allowNull: true,
+        },
+    }, {
+        sequelize: sequelize,
+        tableName: 'plans', // Explicitly set the table name
+        modelName: 'Plan',
+    });
+    return Plan;
+};
+exports.definePlan = definePlan;
 //# sourceMappingURL=plan.js.map

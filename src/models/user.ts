@@ -7,7 +7,7 @@ export class User extends Model {
   public password!: string;
   public email!: string;
   public from_site!: string;
-  public tid!: number;
+  public pid!: number;
   public level!: number;
   public all_bytes!: bigint;
   public use_bytes!: bigint;
@@ -15,6 +15,14 @@ export class User extends Model {
   public unsub!: number;
   public emergency!: number;
   public deleted_at!: Date;
+
+  // Define the association
+  public static associate(models: any) {
+    this.belongsTo(models.Plan, {
+      foreignKey: 'pid',
+      as: 'plans',
+    });
+  }
 }
 
 export const defineUser = (sequelize: Sequelize) => {
@@ -40,9 +48,14 @@ export const defineUser = (sequelize: Sequelize) => {
       type: new DataTypes.STRING(128),
       allowNull: false,
     },
-    tid: {
+    // Configure pid as a foreign key
+    pid: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: 'plans', // This is the table name
+        key: 'id',
+      },
     },
     level: {
       type: DataTypes.INTEGER,

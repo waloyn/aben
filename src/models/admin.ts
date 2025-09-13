@@ -10,6 +10,10 @@ export class Admin extends Model {
     public async comparePassword(password: string): Promise<boolean> {
         return bcrypt.compare(password, this.password);
     }
+
+    public static associate(models: any) {
+        // No associations for now
+    }
 }
 
 export const defineAdmin = (sequelize: Sequelize) => {
